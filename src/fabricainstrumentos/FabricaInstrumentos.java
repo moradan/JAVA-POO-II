@@ -16,6 +16,13 @@ class FabricaInstrumentos {
 
         Collection<Instrumento> instrumentosDeViento = instrumentosPorTipo(TipoInstrumento.VIENTO);
         mostrar(instrumentosDeViento + "\n*****************\n");
+
+        borrarInstrumento("buV4");
+
+        mostrar("Sin el instrumento de viento de burzaco buV4\n\n" + listarInstrumentos() + 
+        "\n*****************\n");
+
+        
     }
 
     static ArrayList<Sucursal> cargarSucursales(){
@@ -52,4 +59,22 @@ class FabricaInstrumentos {
         return instrumentos;
     }
 
+    static void borrarInstrumento(String id) {
+        Sucursal sucursal = buscarInstrumento(id);
+        sucursal.borrarInstrumento(id);
+    }
+
+    static Sucursal buscarInstrumento(String id) {
+        var sucursales = listaSucursales.iterator();
+        Sucursal sucursalDuenia = null;
+        
+        while(sucursales.hasNext() && sucursalDuenia == null) {
+            sucursalDuenia = sucursales.next();
+            if (!sucursalDuenia.tieneInstrumento(id)) {
+                sucursalDuenia = null;
+            }
+        }
+
+        return sucursalDuenia;
+    }
 }

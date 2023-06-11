@@ -11,10 +11,6 @@ public class Sucursal {
         return nombre;
     }
 
-    public ArrayList<Instrumento> listaInstrumentos() {
-        return listaInstrumentos;
-    }
-
     public ArrayList<Instrumento> listarInstrumentos() {
         return listaInstrumentos;
     }
@@ -22,7 +18,7 @@ public class Sucursal {
     public ArrayList<Instrumento> instrumentosPorTipo(TipoInstrumento tipo) {
         ArrayList<Instrumento> instrumentos = new ArrayList<>();
 
-        for (Instrumento instrumento : this.listaInstrumentos()) {
+        for (Instrumento instrumento : this.listaInstrumentos) {
             if (instrumento.tipo() == tipo) {
                 instrumentos.add(instrumento);
             }
@@ -121,6 +117,22 @@ public class Sucursal {
             tipo,
             904550));
         ai++;
+    }
+
+    public boolean tieneInstrumento(String id) {
+        Boolean tiene = false;
+        var instrumentos = listaInstrumentos.iterator();
+        
+        while(instrumentos.hasNext() && !tiene) {
+            if(instrumentos.next().getId().equals(id)) {
+                tiene = true;
+            }
+        }
+        return tiene; 
+    }
+
+    public void borrarInstrumento(String id) {
+        listaInstrumentos.removeIf(instrumento -> (instrumento.getId().equals(id)));
     }
 
     @Override
