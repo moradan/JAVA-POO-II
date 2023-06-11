@@ -22,7 +22,10 @@ class FabricaInstrumentos {
         mostrar("Sin el instrumento de viento de burzaco buV4\n\n" + listarInstrumentos() + 
         "\n*****************\n");
 
-        
+        double porcentaje = porcInstrumentosPorTipo("lanus", TipoInstrumento.PERCUSION);
+        mostrar("Los instrumentos de viento de burzaco son el " + 
+            String.format("%.2f", porcentaje) +
+            "% del total");        
     }
 
     static ArrayList<Sucursal> cargarSucursales(){
@@ -76,5 +79,30 @@ class FabricaInstrumentos {
         }
 
         return sucursalDuenia;
+    }
+
+    static double porcInstrumentosPorTipo(String nombreSucursal, TipoInstrumento tipoInstrumento) {
+        Sucursal sucursal = buscarSucursalPorNombre(nombreSucursal);
+        ArrayList<Instrumento> instrumentos = sucursal.listarInstrumentos();
+        ArrayList<Instrumento> instrumentosDelTipo = sucursal.instrumentosPorTipo(tipoInstrumento);
+
+        System.out.println(instrumentosDelTipo.size());
+        System.out.println(instrumentos.size());
+
+        return ((double) instrumentosDelTipo.size() / instrumentos.size()) * 100;
+    }
+
+    static Sucursal buscarSucursalPorNombre(String nombreSucursal) {
+        var sucursales = listaSucursales.iterator();
+        Sucursal sucursalBuscada = null;
+
+        while (sucursales.hasNext() && sucursalBuscada == null) {
+            sucursalBuscada = sucursales.next();
+            if (!sucursalBuscada.getNombre().equals(nombreSucursal)) {
+                sucursalBuscada = null;
+            }
+        }
+
+        return sucursalBuscada;
     }
 }
