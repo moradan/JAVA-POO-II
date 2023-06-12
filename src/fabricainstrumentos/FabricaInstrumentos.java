@@ -52,9 +52,6 @@ class FabricaInstrumentos {
         ArrayList<Instrumento> instrumentos = sucursal.getListaInstrumentos();
         ArrayList<Instrumento> instrumentosDelTipo = sucursal.instrumentosPorTipo(tipoInstrumento);
 
-        System.out.println(instrumentosDelTipo.size());
-        System.out.println(instrumentos.size());
-
         return ((double) instrumentosDelTipo.size() / instrumentos.size()) * 100;
     }
 

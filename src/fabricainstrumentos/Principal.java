@@ -25,9 +25,8 @@ public class Principal {
         mostrar(SEPARADOR);
 
         double porcentaje = miFabrica.porcInstrumentosPorTipo("lanus", TipoInstrumento.PERCUSION);
-        mostrar("Los instrumentos de viento de burzaco son el " + 
-            String.format("%.2f", porcentaje) +
-            "% del total");        
+        mostrar("Porcentaje de instrumentos de viento en burzaco.");
+        mostrar(String.format("%.2f", porcentaje));        
     }
 
     static void mostrar(Object objeto) {
