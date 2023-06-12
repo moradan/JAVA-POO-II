@@ -3,21 +3,24 @@ package fabricainstrumentos;
 import java.util.Collection;
 
 public class Principal {
-    static final String SEPARADOR = "\n*****************\n";
+    static final String SEPARADOR = "\n*****************\n\n";
 
     public static void main(String[] args) {
         FabricaInstrumentos miFabrica = new FabricaInstrumentos();
 
+        mostrar("Esta es la lista de todos los instrumentos de mi fabrica.");
         miFabrica.listarInstrumentos();
         mostrar(SEPARADOR);
 
+        mostrar("Esta es una lista de los instrumentos de viento de mi fabrica.");
         Collection<Instrumento> instrumentosDeViento = miFabrica.instrumentosPorTipo(TipoInstrumento.VIENTO);
         mostrar(instrumentosDeViento);
         mostrar(SEPARADOR);
 
+        mostrar("Elimino el instrumento cuyo ID es: buV4");
         miFabrica.borrarInstrumento("buV4");
 
-        mostrar("Sin el instrumento de viento de burzaco buV4\n\n");
+        mostrar("Lista de instrumentos sin el instrumento de viento de burzaco buV4");
         miFabrica.listarInstrumentos();
         mostrar(SEPARADOR);
 
