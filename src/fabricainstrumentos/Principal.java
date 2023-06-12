@@ -3,12 +3,12 @@ package fabricainstrumentos;
 import java.util.Collection;
 
 public class Principal {
-    static final String SEPARADOR = "\n*****************\n\n";
+    static final String SEPARADOR = "*****************\n";
 
     public static void main(String[] args) {
         FabricaInstrumentos miFabrica = new FabricaInstrumentos();
 
-        mostrar("Esta es la lista de todos los instrumentos de mi fabrica.");
+        mostrar("Esta es la lista de todos los instrumentos de mi fabrica.\n");
         miFabrica.listarInstrumentos();
         mostrar(SEPARADOR);
 
@@ -26,7 +26,8 @@ public class Principal {
 
         double porcentaje = miFabrica.porcInstrumentosPorTipo("lanus", TipoInstrumento.PERCUSION);
         mostrar("Porcentaje de instrumentos de viento en burzaco.");
-        mostrar(String.format("%.2f", porcentaje));        
+        mostrar(String.format("%.2f%%", porcentaje));  
+        mostrar(SEPARADOR);      
     }
 
     static void mostrar(Object objeto) {

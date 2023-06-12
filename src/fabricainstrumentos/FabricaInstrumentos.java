@@ -14,6 +14,7 @@ class FabricaInstrumentos {
     public void listarInstrumentos() {
         
         for (Sucursal sucursal : this.listaSucursales) {
+            System.out.println("Instrumentos de Sucursal " + sucursal.getNombre());
             sucursal.listarInstrumentos();;
         }
     }

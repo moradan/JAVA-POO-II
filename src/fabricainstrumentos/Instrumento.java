@@ -20,6 +20,6 @@ public class Instrumento {
     }
     @Override
     public String toString() {
-        return id + "\t" + tipo + "\t$" + precio + "\n";
+        return id + "\t" + tipo + "\t$" + precio;
     } 
 }
