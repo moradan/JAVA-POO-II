@@ -11,7 +11,13 @@ public class Sucursal {
         return nombre;
     }
 
-    public ArrayList<Instrumento> listarInstrumentos() {
+    public void listarInstrumentos() {
+        for (Instrumento instrumento : listaInstrumentos) {
+            System.out.println(instrumento);
+        }
+    }
+
+    public ArrayList<Instrumento> getListaInstrumentos() {
         return listaInstrumentos;
     }
 

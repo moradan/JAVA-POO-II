@@ -1,73 +1,39 @@
 package fabricainstrumentos;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 class FabricaInstrumentos {
-    private static ArrayList<Sucursal> listaSucursales;
+    private ArrayList<Sucursal> listaSucursales = new ArrayList<>();
 
-    public static void main(String[] args) {
-        
-        listaSucursales = cargarSucursales();
-        mostrar(listaSucursales + "\n*****************\n");
-
-        Collection<Instrumento> listaInstrumentos = listarInstrumentos();
-        mostrar(listaInstrumentos + "\n*****************\n");
-
-        Collection<Instrumento> instrumentosDeViento = instrumentosPorTipo(TipoInstrumento.VIENTO);
-        mostrar(instrumentosDeViento + "\n*****************\n");
-
-        borrarInstrumento("buV4");
-
-        mostrar("Sin el instrumento de viento de burzaco buV4\n\n" + listarInstrumentos() + 
-        "\n*****************\n");
-
-        double porcentaje = porcInstrumentosPorTipo("lanus", TipoInstrumento.PERCUSION);
-        mostrar("Los instrumentos de viento de burzaco son el " + 
-            String.format("%.2f", porcentaje) +
-            "% del total");        
+    public FabricaInstrumentos(){
+        this.listaSucursales.add(new Sucursal("burzaco"));
+        this.listaSucursales.add(new Sucursal("adrogue"));
+        this.listaSucursales.add(new Sucursal("lanus"));
     }
 
-    static ArrayList<Sucursal> cargarSucursales(){
-        ArrayList<Sucursal> sucursales = new ArrayList<>();
+    public void listarInstrumentos() {
         
-        sucursales.add(new Sucursal("burzaco"));
-        sucursales.add(new Sucursal("adrogue"));
-        sucursales.add(new Sucursal("lanus"));
-        
-        return sucursales;
-    }
-
-    static void mostrar(Object objeto) {
-        System.out.println(objeto);
-    }
-
-    static ArrayList<Instrumento> listarInstrumentos() {
-        ArrayList<Instrumento> instrumentos = new ArrayList<Instrumento>();
-        
-        for (Sucursal sucursal : listaSucursales) {
-            instrumentos.addAll(sucursal.listarInstrumentos());
+        for (Sucursal sucursal : this.listaSucursales) {
+            sucursal.listarInstrumentos();;
         }
-
-        return instrumentos;
     }
 
-    static ArrayList<Instrumento> instrumentosPorTipo(TipoInstrumento tipo) {
+    public ArrayList<Instrumento> instrumentosPorTipo(TipoInstrumento tipo) {
         ArrayList<Instrumento> instrumentos = new ArrayList<Instrumento>();
         
-        for (Sucursal sucursal : listaSucursales) {
+        for (Sucursal sucursal : this.listaSucursales) {
             instrumentos.addAll(sucursal.instrumentosPorTipo(tipo));
         }        
 
         return instrumentos;
     }
 
-    static void borrarInstrumento(String id) {
+    public void borrarInstrumento(String id) {
         Sucursal sucursal = buscarInstrumento(id);
         sucursal.borrarInstrumento(id);
     }
 
-    static Sucursal buscarInstrumento(String id) {
+    private Sucursal buscarInstrumento(String id) {
         var sucursales = listaSucursales.iterator();
         Sucursal sucursalDuenia = null;
         
@@ -81,9 +47,9 @@ class FabricaInstrumentos {
         return sucursalDuenia;
     }
 
-    static double porcInstrumentosPorTipo(String nombreSucursal, TipoInstrumento tipoInstrumento) {
+    public double porcInstrumentosPorTipo(String nombreSucursal, TipoInstrumento tipoInstrumento) {
         Sucursal sucursal = buscarSucursalPorNombre(nombreSucursal);
-        ArrayList<Instrumento> instrumentos = sucursal.listarInstrumentos();
+        ArrayList<Instrumento> instrumentos = sucursal.getListaInstrumentos();
         ArrayList<Instrumento> instrumentosDelTipo = sucursal.instrumentosPorTipo(tipoInstrumento);
 
         System.out.println(instrumentosDelTipo.size());
@@ -92,7 +58,7 @@ class FabricaInstrumentos {
         return ((double) instrumentosDelTipo.size() / instrumentos.size()) * 100;
     }
 
-    static Sucursal buscarSucursalPorNombre(String nombreSucursal) {
+    private Sucursal buscarSucursalPorNombre(String nombreSucursal) {
         var sucursales = listaSucursales.iterator();
         Sucursal sucursalBuscada = null;
 
